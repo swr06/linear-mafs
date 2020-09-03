@@ -1,24 +1,23 @@
-#include <iostream>
+﻿#include <iostream>
 #include <array>
 #include <cmath>
 #include <vector>
 
 /*
 Todo :
-Translation
-Scaling
-Matrix transposing
+Translation ✓
+Scaling ✓
+Matrix transposing ✓
 
-Rotation
-Matrix-Vector Multiplication
-Matrix-Matrix multiplication
-inverse matrix
-Matrix multiplication
-	   addition
-	   subtraction
+Rotation 
+Matrix-Vector Multiplication (how?)
+Matrix-Matrix multiplication ✓
+Matrix multiplication ✓
+	   addition ✓ 
+	   subtraction ✓
 
-Vector addition
-	   subtraction
+Vector addition ✓
+	   subtraction ✓
 */
 
 namespace lm
@@ -123,17 +122,35 @@ namespace lm
 			return p_Data[e].data();
 		}
 
-		Mat4 operator* (const Mat4& m)
+		// Matrix scalar multiplication
+		Mat4 operator* (const float& s)
 		{
-			Mat4& m1 = *this;
-			Mat4 m2 = m;
+			Mat4& m = *this;
 			Mat4 res;
 
 			for (int i = 0; i < 4; i++) 
 			{
 				for (int j = 0; j < 4; j++) 
 				{
-					for (int p = 0; p < 4; p++) 
+					res[i][j] = s * m[i][j];
+				}
+			}
+
+			return res;
+		}
+
+		// Matrix matrix multiplication
+		Mat4 operator* (const Mat4& m)
+		{
+			Mat4& m1 = *this;
+			Mat4 m2 = m;
+			Mat4 res;
+
+			for (int i = 0; i < 4; i++)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					for (int p = 0; p < 4; p++)
 					{
 						res[i][j] += m1[i][p] * m2[p][j];
 					}
@@ -143,6 +160,7 @@ namespace lm
 			return res;
 		}
 
+		// Matrix addition
 		Mat4 operator+ (const Mat4& m)
 		{
 			Mat4& m1 = *this;
@@ -160,6 +178,7 @@ namespace lm
 			return res;
 		}
 
+		// Matrix subtraction
 		Mat4 operator- (const Mat4& m)
 		{
 			Mat4& m1 = *this;
@@ -177,6 +196,7 @@ namespace lm
 			return res;
 		}
 
+		// The matrix data
 		std::array<std::array<lowp_float, 4>, 4> p_Data;
 	};
 
