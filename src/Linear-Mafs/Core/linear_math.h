@@ -94,18 +94,18 @@ namespace lm
 
 		Mat4(const float& v)
 		{
-			for (int i = 0 ; i < 4 ; i++)
-				for (int j = 0; j < 4; j++)
-				{
-					p_Data[i][j] = v;
-				}
+			memset(&p_Data, 0, sizeof(p_Data));
+			p_Data[0][0] = v;
+			p_Data[1][1] = v;
+			p_Data[2][2] = v;
+			p_Data[3][3] = v;
 		}
 
 		Mat4()
 		{
 			// Create an indentity matrix
 
-			memset(&p_Data, 0, 4 * 4);
+			memset(&p_Data, 0, sizeof(p_Data));
 			p_Data[0][0] = 1.0f;
 			p_Data[1][1] = 1.0f;
 			p_Data[2][2] = 1.0f;
@@ -127,6 +127,7 @@ namespace lm
 		{
 			Mat4& m = *this;
 			Mat4 res;
+			memset(&res.p_Data, 0, sizeof(res.p_Data));
 
 			for (int i = 0; i < 4; i++) 
 			{

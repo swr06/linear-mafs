@@ -4,7 +4,6 @@ void lm::MultiplyMatrix4(Mat4& res, const Mat4& m1, const Mat4& m2)
 {
 	Mat4 _m1 = m1;
 	Mat4 _m2 = m2;
-	Mat4 res;
 
 	for (int i = 0; i < 4; i++)
 	{

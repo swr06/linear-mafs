@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::cout << "Hello World ! :)";
+	std::cout << "Thanks for downloading linear mafs :)";
 	std::cin.get();
 }
